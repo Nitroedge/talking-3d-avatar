@@ -3,7 +3,6 @@ import { Canvas, useFrame } from '@react-three/fiber'
 import { useGLTF, useTexture, Loader, Environment, useFBX, useAnimations, OrthographicCamera } from '@react-three/drei';
 import { MeshStandardMaterial } from 'three/src/materials/MeshStandardMaterial';
 
-import { LinearEncoding, sRGBEncoding } from 'three/src/constants';
 import { LineBasicMaterial, MeshPhysicalMaterial, Vector2 } from 'three';
 import ReactAudioPlayer from 'react-audio-player';
 
@@ -12,6 +11,8 @@ import blinkData from './blendDataBlink.json';
 
 import * as THREE from 'three';
 import axios from 'axios';
+import { SRGBColorSpace, LinearSRGBColorSpace } from 'three';
+
 const _ = require('lodash');
 
 const host = 'http://localhost:5000'
@@ -71,14 +72,14 @@ function Avatar({ avatar_url, speak, setSpeak, text, setAudioSource, playing }) 
     hairNormalTexture,
     hairRoughnessTexture
   ], t => {
-    t.encoding = sRGBEncoding;
+    t.colorSpace = SRGBColorSpace;
     t.flipY = false;
   });
 
-  bodyNormalTexture.encoding = LinearEncoding;
-  tshirtNormalTexture.encoding = LinearEncoding;
-  teethNormalTexture.encoding = LinearEncoding;
-  hairNormalTexture.encoding = LinearEncoding;
+  bodyNormalTexture.colorSpace = LinearSRGBColorSpace;
+  tshirtNormalTexture.colorSpace = LinearSRGBColorSpace;
+  teethNormalTexture.colorSpace = LinearSRGBColorSpace;
+  hairNormalTexture.colorSpace = LinearSRGBColorSpace;
 
   
   gltf.scene.traverse(node => {
@@ -384,12 +385,10 @@ function Bg() {
 
   return(
     <mesh position={[0, 1.5, -2]} scale={[0.8, 0.8, 0.8]}>
-      <planeBufferGeometry />
+      <planeGeometry />
       <meshBasicMaterial map={texture} />
-
     </mesh>
   )
-
 }
 
 export default App;

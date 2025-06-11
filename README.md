@@ -9,10 +9,13 @@ A ThreeJS-powered virtual human being that uses a set of neat [Azure APIs](https
 Add Chat GPT to the mix and maybe you can have for yourself a nice face to chat with. 🙂
 
 
+## Requirements
+- Node.js version 20
+
 ## Run
 ```
-$ yarn install
-$ yarn start
+$ npm install
+$ npm start
 ```
 
 ## Backend

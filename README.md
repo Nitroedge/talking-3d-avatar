@@ -20,3 +20,6 @@ $ npm start
 
 ## Backend
 You'll also need https://github.com/bornfree/talking_avatar_backend for the text to speech conversion.
+
+## Custom character tutorial
+https://www.youtube.com/watch?v=sCteA4ZFLOc

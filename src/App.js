@@ -420,6 +420,9 @@ function App() {
       {/* Title */}
       <div style={STYLES.title}>Conversation Engine</div>
       
+      {/* Character section */}
+      <div style={STYLES.characterSection}>Character: Joanna</div>
+      
       {/* Avatar container with dark grey rounded border */}
       <div style={STYLES.avatarContainer}>
         {/* Recording indicator overlay */}
@@ -481,9 +484,6 @@ function App() {
           {speak ? 'Running...' : 'Message Count: 17'} 
         </button>
       </div>
-
-      {/* Character section */}
-      <div style={STYLES.characterSection}>Character: Joanna</div>
 
       {/* Stats section */}
       <div style={STYLES.statsSection}>

@@ -300,8 +300,8 @@ const STYLES = {
     backgroundColor: '#000000'
   },
   avatarContainer: {
-    width: '50vw',
-    height: '50vh',
+    width: '60vw',
+    height: '33.75vw',
     border: '3px solid #555555',
     borderRadius: '15px',
     overflow: 'hidden',
@@ -435,7 +435,7 @@ function Bg() {
   const texture = useTexture('/images/bg.png');
 
   return(
-    <mesh position={[0, 1.5, -2]} scale={[1.0, 0.56, 1]}>
+    <mesh position={[0, 1.5, -2]} scale={[1.6, 0.9, 1]}>
       <planeGeometry />
       <meshBasicMaterial map={texture} />
     </mesh>

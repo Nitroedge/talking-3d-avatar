@@ -388,7 +388,8 @@ function App() {
             <Bg />
           </Suspense>
 
-          <Suspense fallback={null}>
+          {/* Temporarily disabled for better performance while working on UI */}
+          {/* <Suspense fallback={null}>
             <Avatar 
               avatar_url="/model.glb" 
               speak={speak} 
@@ -397,7 +398,7 @@ function App() {
               setAudioSource={setAudioSource}
               playing={playing}
             />
-          </Suspense>
+          </Suspense> */}
         </Canvas>
         <Loader dataInterpolation={(p) => `Loading... please wait`}  />
       </div>

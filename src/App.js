@@ -286,11 +286,54 @@ function makeSpeech(text) {
 }
 
 const STYLES = {
-  area: {position: 'absolute', bottom:'10px', left: '10px', zIndex: 500},
-  text: {margin: '0px', width:'300px', padding: '5px', background: 'none', color: '#ffffff', fontSize: '1.2em', border: 'none'},
-  speak: {padding: '10px', marginTop: '5px', display: 'block', color: '#FFFFFF', background: '#222222', border: 'None'},
-  area2: {position: 'absolute', top:'5px', right: '15px', zIndex: 500},
-  label: {color: '#777777', fontSize:'0.8em'}
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '20px',
+    padding: '20px',
+    minHeight: '100vh',
+    backgroundColor: '#000000'
+  },
+  avatarContainer: {
+    width: '50vw',
+    height: '50vh',
+    border: '3px solid #555555',
+    borderRadius: '15px',
+    overflow: 'hidden',
+    position: 'relative'
+  },
+  controlArea: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: '10px',
+    padding: '20px',
+    backgroundColor: '#1a1a1a',
+    borderRadius: '10px',
+    border: '1px solid #333333'
+  },
+  text: {
+    margin: '0px',
+    width: '400px',
+    padding: '10px',
+    background: '#2a2a2a',
+    color: '#ffffff',
+    fontSize: '1.2em',
+    border: '1px solid #555555',
+    borderRadius: '5px',
+    resize: 'vertical'
+  },
+  speak: {
+    padding: '12px 24px',
+    marginTop: '5px',
+    color: '#FFFFFF',
+    background: '#333333',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    fontSize: '1em'
+  }
 }
 
 function App() {
@@ -317,11 +360,60 @@ function App() {
   }  
 
   return (
-    <div className="full">
-      <div style={STYLES.area}>
-        <textarea rows={4} type="text" style={STYLES.text} value={text} onChange={(e) => setText(e.target.value.substring(0, 200))} />
-        <button onClick={() => setSpeak(true)} style={STYLES.speak}> { speak? 'Running...': 'Speak' }</button>
+    <div style={STYLES.container}>
+      {/* Avatar container with dark grey rounded border */}
+      <div style={STYLES.avatarContainer}>
+        <Canvas 
+          dpr={2} 
+          style={{width: '100%', height: '100%'}}
+          onCreated={(ctx) => {
+            ctx.gl.physicallyCorrectLights = true;
+          }}
+        >
+          <OrthographicCamera 
+            makeDefault
+            zoom={1000}
+            position={[0, 1.65, 1]}
+          />
 
+          <Suspense fallback={null}>
+            <Environment background={false} files="/images/photo_studio_loft_hall_1k.hdr" />
+          </Suspense>
+
+          <Suspense fallback={null}>
+            <Bg />
+          </Suspense>
+
+          <Suspense fallback={null}>
+            <Avatar 
+              avatar_url="/model.glb" 
+              speak={speak} 
+              setSpeak={setSpeak}
+              text={text}
+              setAudioSource={setAudioSource}
+              playing={playing}
+            />
+          </Suspense>
+        </Canvas>
+        <Loader dataInterpolation={(p) => `Loading... please wait`}  />
+      </div>
+
+      {/* Text input area outside the bordered container */}
+      <div style={STYLES.controlArea}>
+        <textarea 
+          rows={4} 
+          style={STYLES.text} 
+          value={text} 
+          onChange={(e) => setText(e.target.value.substring(0, 200))} 
+          placeholder="Enter text for the avatar to speak..."
+        />
+        <button 
+          onClick={() => setSpeak(true)} 
+          style={STYLES.speak}
+          disabled={speak}
+        > 
+          {speak ? 'Running...' : 'Speak'} 
+        </button>
       </div>
 
       <ReactAudioPlayer
@@ -329,53 +421,8 @@ function App() {
         ref={audioPlayer}
         onEnded={playerEnded}
         onCanPlayThrough={playerReady}
-        
       />
-      
-      {/* <Stats /> */}
-    <Canvas dpr={2} onCreated={(ctx) => {
-        ctx.gl.physicallyCorrectLights = true;
-      }}>
-
-      <OrthographicCamera 
-      makeDefault
-      zoom={2000}
-      position={[0, 1.65, 1]}
-      />
-
-      {/* <OrbitControls
-        target={[0, 1.65, 0]}
-      /> */}
-
-      <Suspense fallback={null}>
-        <Environment background={false} files="/images/photo_studio_loft_hall_1k.hdr" />
-      </Suspense>
-
-      <Suspense fallback={null}>
-        <Bg />
-      </Suspense>
-
-      <Suspense fallback={null}>
-
-
-
-          <Avatar 
-            avatar_url="/model.glb" 
-            speak={speak} 
-            setSpeak={setSpeak}
-            text={text}
-            setAudioSource={setAudioSource}
-            playing={playing}
-            />
-
-      
-      </Suspense>
-
-  
-
-  </Canvas>
-  <Loader dataInterpolation={(p) => `Loading... please wait`}  />
-  </div>
+    </div>
   )
 }
 
@@ -384,7 +431,7 @@ function Bg() {
   const texture = useTexture('/images/bg.webp');
 
   return(
-    <mesh position={[0, 1.5, -2]} scale={[0.8, 0.8, 0.8]}>
+    <mesh position={[0, 1.5, -2]} scale={[0.4, 0.4, 0.4]}>
       <planeGeometry />
       <meshBasicMaterial map={texture} />
     </mesh>

@@ -15,7 +15,7 @@ import { SRGBColorSpace, LinearSRGBColorSpace } from 'three';
 
 const _ = require('lodash');
 
-const host = 'http://localhost:5000'
+const host = process.env.REACT_APP_BACKEND_URL || 'https://1bc69894-8a5c-4fc5-bb5d-6e967d277718-00-2oe1zx9rjbgp2.riker.replit.dev'
 
 function Avatar({ avatar_url, speak, setSpeak, text, setAudioSource, playing }) {
 

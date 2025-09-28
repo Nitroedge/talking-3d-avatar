@@ -1,0 +1,14 @@
+@keyframes flash {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0.3;
+  }
+}
+
+.full {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}

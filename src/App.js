@@ -366,6 +366,29 @@ const STYLES = {
     borderRadius: '8px',
     border: '1px solid #333333',
     fontFamily: 'monospace'
+  },
+  recordingOverlay: {
+    position: 'absolute',
+    top: '15px',
+    left: '15px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+    zIndex: 1000
+  },
+  recordingDot: {
+    width: '12px',
+    height: '12px',
+    borderRadius: '50%',
+    backgroundColor: '#ff0000',
+    animation: 'flash 1s infinite'
+  },
+  recordingText: {
+    color: '#ffffff',
+    fontSize: '14px',
+    fontWeight: 'bold',
+    fontFamily: 'monospace',
+    textShadow: '1px 1px 2px rgba(0,0,0,0.8)'
   }
 }
 
@@ -399,6 +422,12 @@ function App() {
       
       {/* Avatar container with dark grey rounded border */}
       <div style={STYLES.avatarContainer}>
+        {/* Recording indicator overlay */}
+        <div style={STYLES.recordingOverlay}>
+          <div style={STYLES.recordingDot}></div>
+          <div style={STYLES.recordingText}>REC</div>
+        </div>
+        
         <Canvas 
           dpr={2} 
           style={{width: '100%', height: '100%'}}
@@ -435,9 +464,6 @@ function App() {
         <Loader dataInterpolation={(p) => `Loading... please wait`}  />
       </div>
 
-      {/* Character section */}
-      <div style={STYLES.characterSection}>Character: Joanna</div>
-
       {/* Text input area outside the bordered container */}
       <div style={STYLES.controlArea}>
         <textarea 
@@ -452,9 +478,12 @@ function App() {
           style={STYLES.speak}
           disabled={speak}
         > 
-          {speak ? 'Running...' : 'Speak'} 
+          {speak ? 'Running...' : 'Message Count: 17'} 
         </button>
       </div>
+
+      {/* Character section */}
+      <div style={STYLES.characterSection}>Character: Joanna</div>
 
       {/* Stats section */}
       <div style={STYLES.statsSection}>

@@ -435,7 +435,7 @@ function Bg() {
   const texture = useTexture('/images/bg.png');
 
   return(
-    <mesh position={[0, 1.5, -2]} scale={[2.2, 1.2, 1]}>
+    <mesh position={[0, 1.5, -2]} scale={[1.0, 0.56, 1]}>
       <planeGeometry />
       <meshBasicMaterial map={texture} />
     </mesh>

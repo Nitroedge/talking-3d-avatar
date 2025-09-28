@@ -337,6 +337,35 @@ const STYLES = {
     borderRadius: '5px',
     cursor: 'pointer',
     fontSize: '1em'
+  },
+  title: {
+    fontSize: '2.5em',
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    marginBottom: '20px',
+    textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+  },
+  characterSection: {
+    fontSize: '1.4em',
+    color: '#FFFFFF',
+    textAlign: 'center',
+    margin: '15px 0',
+    padding: '10px',
+    backgroundColor: '#2a2a2a',
+    borderRadius: '8px',
+    border: '1px solid #444444'
+  },
+  statsSection: {
+    fontSize: '1.1em',
+    color: '#CCCCCC',
+    textAlign: 'center',
+    margin: '20px 0',
+    padding: '15px',
+    backgroundColor: '#1a1a1a',
+    borderRadius: '8px',
+    border: '1px solid #333333',
+    fontFamily: 'monospace'
   }
 }
 
@@ -365,6 +394,9 @@ function App() {
 
   return (
     <div style={STYLES.container}>
+      {/* Title */}
+      <div style={STYLES.title}>Conversation Engine</div>
+      
       {/* Avatar container with dark grey rounded border */}
       <div style={STYLES.avatarContainer}>
         <Canvas 
@@ -403,6 +435,9 @@ function App() {
         <Loader dataInterpolation={(p) => `Loading... please wait`}  />
       </div>
 
+      {/* Character section */}
+      <div style={STYLES.characterSection}>Character: Joanna</div>
+
       {/* Text input area outside the bordered container */}
       <div style={STYLES.controlArea}>
         <textarea 
@@ -419,6 +454,11 @@ function App() {
         > 
           {speak ? 'Running...' : 'Speak'} 
         </button>
+      </div>
+
+      {/* Stats section */}
+      <div style={STYLES.statsSection}>
+        STATS:&nbsp;&nbsp;&nbsp;&nbsp;Message Count: 7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Current Mood: 0.67&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Topic: Business Strategy
       </div>
 
       <ReactAudioPlayer

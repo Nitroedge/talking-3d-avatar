@@ -210,7 +210,7 @@ function Avatar({ avatar_url, speak, setSpeak, text, setAudioSource, playing }) 
     .catch(err => {
       console.error(err);
       setSpeak(false);
-
+      alert('Backend service not available. This app requires a separate backend service for text-to-speech functionality.\n\nThe backend can be found at: https://github.com/bornfree/talking_avatar_backend');
     })
 
   }, [speak]);
@@ -282,7 +282,11 @@ function Avatar({ avatar_url, speak, setSpeak, text, setAudioSource, playing }) 
 
 
 function makeSpeech(text) {
-  return axios.post(host + '/talk', { text });
+  return axios.post(host + '/talk', { text }).catch(error => {
+    console.warn('Backend not available. This frontend requires a backend service for text-to-speech functionality.');
+    console.warn('Backend repository: https://github.com/bornfree/talking_avatar_backend');
+    throw error;
+  });
 }
 
 const STYLES = {

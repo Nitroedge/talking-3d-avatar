@@ -338,13 +338,13 @@ const STYLES = {
     marginBottom: '15px'
   },
   sidebarLabel: {
-    fontSize: '1em',
+    fontSize: '0.85em',
     color: '#CCCCCC',
     fontWeight: 'bold',
     marginBottom: '5px'
   },
   sidebarValue: {
-    fontSize: '1.1em',
+    fontSize: '0.9em',
     color: '#FFFFFF',
     marginLeft: '10px'
   },

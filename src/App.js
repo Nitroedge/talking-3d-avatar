@@ -312,7 +312,10 @@ const STYLES = {
   mainContent: {
     display: 'flex',
     gap: '30px',
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+    maxWidth: '1200px',
+    margin: '0 auto'
   },
   leftColumn: {
     display: 'flex',
@@ -342,7 +345,7 @@ const STYLES = {
     marginLeft: '10px'
   },
   avatarContainer: {
-    width: '100%',
+    width: '600px',
     aspectRatio: '16/9',
     border: '3px solid #555555',
     borderRadius: '15px',
@@ -362,11 +365,11 @@ const STYLES = {
     backgroundColor: '#1a1a1a',
     borderRadius: '10px',
     border: '1px solid #333333',
-    width: '100%'
+    width: '600px'
   },
   text: {
     margin: '0px',
-    width: '100%',
+    width: '560px',
     padding: '10px',
     background: '#2a2a2a',
     color: '#ffffff',

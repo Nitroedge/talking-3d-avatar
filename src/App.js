@@ -451,7 +451,7 @@ function App() {
   const audioPlayer = useRef();
 
   const [speak, setSpeak] = useState(false);
-  const [text, setText] = useState("My name is Arwen. I'm a virtual human who can speak whatever you type here along with realistic facial movements.");
+  const [text, setText] = useState("I'm cooking up a storm and I hear you have Hello Fresh coming on Tuesday. Cook up a storm, I have my own restaurant to run. I'm serving Sienna style garlic bread tonight.");
   const [audioSource, setAudioSource] = useState(null);
   const [playing, setPlaying] = useState(false);
 

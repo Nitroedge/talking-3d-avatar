@@ -348,6 +348,12 @@ const STYLES = {
     color: '#FFFFFF',
     marginLeft: '10px'
   },
+  sidebarValueLarge: {
+    fontSize: '1.8em',
+    color: '#FFFFFF',
+    marginLeft: '10px',
+    fontWeight: 'bold'
+  },
   avatarContainer: {
     width: '600px',
     aspectRatio: '16/9',
@@ -370,6 +376,19 @@ const STYLES = {
     borderRadius: '10px',
     border: '1px solid #333333',
     width: '600px'
+  },
+  controlRow: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    width: '100%'
+  },
+  timeDisplayBottom: {
+    fontSize: '0.9em',
+    color: '#CCCCCC'
+  },
+  timeLabel: {
+    color: '#00ff00'
   },
   text: {
     margin: '0px',
@@ -474,7 +493,6 @@ function App() {
       {/* Header section */}
       <div style={STYLES.header}>
         <div style={STYLES.title}>Conversation Engine</div>
-        <div style={STYLES.timeDisplay}>Time: 2:13pm</div>
       </div>
       
       {/* Main content area with sidebar */}
@@ -530,13 +548,18 @@ function App() {
               onChange={(e) => setText(e.target.value.substring(0, 200))} 
               placeholder="Enter text for the avatar to speak..."
             />
-            <button 
-              onClick={() => setSpeak(true)} 
-              style={STYLES.speak}
-              disabled={speak}
-            > 
-              {speak ? 'Running...' : 'Speak'} 
-            </button>
+            <div style={STYLES.controlRow}>
+              <button 
+                onClick={() => setSpeak(true)} 
+                style={STYLES.speak}
+                disabled={speak}
+              > 
+                {speak ? 'Running...' : 'Speak'} 
+              </button>
+              <div style={STYLES.timeDisplayBottom}>
+                <span style={STYLES.timeLabel}>Time:</span> 2:13pm
+              </div>
+            </div>
           </div>
         </div>
 
@@ -544,7 +567,7 @@ function App() {
         <div style={STYLES.sidebar}>
           <div style={STYLES.sidebarItem}>
             <div style={STYLES.sidebarLabel}>Character:</div>
-            <div style={STYLES.sidebarValue}>Joanna</div>
+            <div style={STYLES.sidebarValueLarge}>Joanna</div>
           </div>
           
           <div style={STYLES.sidebarItem}>
@@ -559,7 +582,7 @@ function App() {
           
           <div style={STYLES.sidebarItem}>
             <div style={STYLES.sidebarLabel}>Message Count:</div>
-            <div style={STYLES.sidebarValue}>16</div>
+            <div style={STYLES.sidebarValueLarge}>16</div>
           </div>
           
           <div style={STYLES.sidebarItem}>

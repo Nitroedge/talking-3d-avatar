@@ -305,7 +305,11 @@ const STYLES = {
     border: '3px solid #555555',
     borderRadius: '15px',
     overflow: 'hidden',
-    position: 'relative'
+    position: 'relative',
+    backgroundImage: 'url(/images/bg.png)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
   },
   controlArea: {
     display: 'flex',
@@ -448,9 +452,6 @@ function App() {
             <Environment background={false} files="/images/photo_studio_loft_hall_1k.hdr" />
           </Suspense>
 
-          <Suspense fallback={null}>
-            <Bg />
-          </Suspense>
 
           {/* Temporarily disabled for better performance while working on UI */}
           {/* <Suspense fallback={null}>
@@ -500,16 +501,5 @@ function App() {
   )
 }
 
-function Bg() {
-  
-  const texture = useTexture('/images/bg.png');
-
-  return(
-    <mesh position={[0, 1.5, -2]} scale={[0.9, 0.5, 1]}>
-      <planeGeometry />
-      <meshBasicMaterial map={texture} />
-    </mesh>
-  )
-}
 
 export default App;

@@ -432,7 +432,7 @@ function App() {
 
 function Bg() {
   
-  const texture = useTexture('/images/bg.webp');
+  const texture = useTexture('/images/bg.png');
 
   return(
     <mesh position={[0, 1.5, -2]} scale={[0.4, 0.4, 0.4]}>

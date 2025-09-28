@@ -301,13 +301,17 @@ const STYLES = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    marginBottom: '20px'
+    marginBottom: '20px',
+    width: '100%',
+    maxWidth: '1200px',
+    margin: '0 auto 20px auto'
   },
   timeDisplay: {
-    fontSize: '1.2em',
+    fontSize: '0.9em',
     color: '#CCCCCC',
-    alignSelf: 'flex-end',
-    marginTop: '5px'
+    alignSelf: 'flex-start',
+    marginTop: '5px',
+    marginLeft: '0px'
   },
   mainContent: {
     display: 'flex',
@@ -502,6 +506,7 @@ function App() {
                 <Environment background={false} files="/images/photo_studio_loft_hall_1k.hdr" />
               </Suspense>
 
+              {/* Avatar temporarily hidden 
               <Suspense fallback={null}>
                 <Avatar 
                   avatar_url="/model.glb" 
@@ -511,7 +516,7 @@ function App() {
                   setAudioSource={setAudioSource}
                   playing={playing}
                 />
-              </Suspense>
+              </Suspense> */}
             </Canvas>
             <Loader dataInterpolation={(p) => `Loading... please wait`}  />
           </div>

@@ -293,15 +293,57 @@ const STYLES = {
   container: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
-    gap: '10px',
     padding: '20px',
     minHeight: '100vh',
     backgroundColor: '#000000'
   },
+  header: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginBottom: '20px'
+  },
+  timeDisplay: {
+    fontSize: '1.2em',
+    color: '#CCCCCC',
+    alignSelf: 'flex-end',
+    marginTop: '5px'
+  },
+  mainContent: {
+    display: 'flex',
+    gap: '30px',
+    alignItems: 'flex-start'
+  },
+  leftColumn: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '15px',
+    flex: 1
+  },
+  sidebar: {
+    width: '250px',
+    padding: '20px',
+    backgroundColor: '#1a1a1a',
+    borderRadius: '10px',
+    border: '1px solid #333333'
+  },
+  sidebarItem: {
+    marginBottom: '15px'
+  },
+  sidebarLabel: {
+    fontSize: '1em',
+    color: '#CCCCCC',
+    fontWeight: 'bold',
+    marginBottom: '5px'
+  },
+  sidebarValue: {
+    fontSize: '1.1em',
+    color: '#FFFFFF',
+    marginLeft: '10px'
+  },
   avatarContainer: {
-    width: '60vw',
-    height: '33.75vw',
+    width: '100%',
+    height: '400px',
     border: '3px solid #555555',
     borderRadius: '15px',
     overflow: 'hidden',
@@ -319,11 +361,12 @@ const STYLES = {
     padding: '20px',
     backgroundColor: '#1a1a1a',
     borderRadius: '10px',
-    border: '1px solid #333333'
+    border: '1px solid #333333',
+    width: '100%'
   },
   text: {
     margin: '0px',
-    width: '400px',
+    width: '100%',
     padding: '10px',
     background: '#2a2a2a',
     color: '#ffffff',
@@ -421,74 +464,102 @@ function App() {
 
   return (
     <div style={STYLES.container}>
-      {/* Title */}
-      <div style={STYLES.title}>Conversation Engine</div>
+      {/* Header section */}
+      <div style={STYLES.header}>
+        <div style={STYLES.title}>Conversation Engine</div>
+        <div style={STYLES.timeDisplay}>Time: 2:13pm</div>
+      </div>
       
-      {/* Character section */}
-      <div style={STYLES.characterSection}>Character: Joanna</div>
-      
-      {/* Avatar container with dark grey rounded border */}
-      <div style={STYLES.avatarContainer}>
-        {/* Recording indicator overlay */}
-        <div style={STYLES.recordingOverlay}>
-          <div style={STYLES.recordingDot}></div>
-          <div style={STYLES.recordingText}>REC</div>
-        </div>
-        
-        <Canvas 
-          dpr={2} 
-          style={{width: '100%', height: '100%'}}
-          onCreated={(ctx) => {
-            ctx.gl.physicallyCorrectLights = true;
-          }}
-        >
-          <OrthographicCamera 
-            makeDefault
-            zoom={1000}
-            position={[0, 1.65, 1]}
-          />
+      {/* Main content area with sidebar */}
+      <div style={STYLES.mainContent}>
+        {/* Left column */}
+        <div style={STYLES.leftColumn}>
+          {/* Avatar container */}
+          <div style={STYLES.avatarContainer}>
+            {/* Recording indicator overlay */}
+            <div style={STYLES.recordingOverlay}>
+              <div style={STYLES.recordingDot}></div>
+              <div style={STYLES.recordingText}>REC</div>
+            </div>
+            
+            <Canvas 
+              dpr={2} 
+              style={{width: '100%', height: '100%'}}
+              onCreated={(ctx) => {
+                ctx.gl.physicallyCorrectLights = true;
+              }}
+            >
+              <OrthographicCamera 
+                makeDefault
+                zoom={1000}
+                position={[0, 1.65, 1]}
+              />
 
-          <Suspense fallback={null}>
-            <Environment background={false} files="/images/photo_studio_loft_hall_1k.hdr" />
-          </Suspense>
+              <Suspense fallback={null}>
+                <Environment background={false} files="/images/photo_studio_loft_hall_1k.hdr" />
+              </Suspense>
 
+              {/* Temporarily disabled for better performance while working on UI */}
+              {/* <Suspense fallback={null}>
+                <Avatar 
+                  avatar_url="/model.glb" 
+                  speak={speak} 
+                  setSpeak={setSpeak}
+                  text={text}
+                  setAudioSource={setAudioSource}
+                  playing={playing}
+                />
+              </Suspense> */}
+            </Canvas>
+            <Loader dataInterpolation={(p) => `Loading... please wait`}  />
+          </div>
 
-          {/* Temporarily disabled for better performance while working on UI */}
-          {/* <Suspense fallback={null}>
-            <Avatar 
-              avatar_url="/model.glb" 
-              speak={speak} 
-              setSpeak={setSpeak}
-              text={text}
-              setAudioSource={setAudioSource}
-              playing={playing}
+          {/* Text input controls */}
+          <div style={STYLES.controlArea}>
+            <textarea 
+              rows={4} 
+              style={STYLES.text} 
+              value={text} 
+              onChange={(e) => setText(e.target.value.substring(0, 200))} 
+              placeholder="Enter text for the avatar to speak..."
             />
-          </Suspense> */}
-        </Canvas>
-        <Loader dataInterpolation={(p) => `Loading... please wait`}  />
-      </div>
+            <button 
+              onClick={() => setSpeak(true)} 
+              style={STYLES.speak}
+              disabled={speak}
+            > 
+              {speak ? 'Running...' : 'Speak'} 
+            </button>
+          </div>
+        </div>
 
-      {/* Text input area outside the bordered container */}
-      <div style={STYLES.controlArea}>
-        <textarea 
-          rows={4} 
-          style={STYLES.text} 
-          value={text} 
-          onChange={(e) => setText(e.target.value.substring(0, 200))} 
-          placeholder="Enter text for the avatar to speak..."
-        />
-        <button 
-          onClick={() => setSpeak(true)} 
-          style={STYLES.speak}
-          disabled={speak}
-        > 
-          {speak ? 'Running...' : 'Message Count: 17'} 
-        </button>
-      </div>
-
-      {/* Stats section */}
-      <div style={STYLES.statsSection}>
-        STATS:&nbsp;&nbsp;&nbsp;&nbsp;Message Count: 7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Current Mood: 0.67&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Topic: Business Strategy
+        {/* Right sidebar */}
+        <div style={STYLES.sidebar}>
+          <div style={STYLES.sidebarItem}>
+            <div style={STYLES.sidebarLabel}>Character:</div>
+            <div style={STYLES.sidebarValue}>Joanna</div>
+          </div>
+          
+          <div style={STYLES.sidebarItem}>
+            <div style={STYLES.sidebarLabel}>Current Mood:</div>
+            <div style={STYLES.sidebarValue}>0.67</div>
+          </div>
+          
+          <div style={STYLES.sidebarItem}>
+            <div style={STYLES.sidebarLabel}>AI Model:</div>
+            <div style={STYLES.sidebarValue}>gpt-5</div>
+          </div>
+          
+          <div style={STYLES.sidebarItem}>
+            <div style={STYLES.sidebarLabel}>Message Count:</div>
+            <div style={STYLES.sidebarValue}>16</div>
+          </div>
+          
+          <div style={STYLES.sidebarItem}>
+            <div style={STYLES.sidebarLabel}>Chat Started:</div>
+            <div style={STYLES.sidebarValue}>Sept 30th 1:37pm</div>
+          </div>
+        </div>
       </div>
 
       <ReactAudioPlayer

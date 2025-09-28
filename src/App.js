@@ -294,7 +294,7 @@ const STYLES = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    gap: '20px',
+    gap: '10px',
     padding: '20px',
     minHeight: '100vh',
     backgroundColor: '#000000'
@@ -347,14 +347,14 @@ const STYLES = {
     fontWeight: 'bold',
     color: '#FFFFFF',
     textAlign: 'center',
-    marginBottom: '20px',
+    marginBottom: '5px',
     textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
   },
   characterSection: {
     fontSize: '1.4em',
     color: '#FFFFFF',
     textAlign: 'center',
-    margin: '15px 0',
+    margin: '5px 0',
     padding: '10px',
     backgroundColor: '#2a2a2a',
     borderRadius: '8px',

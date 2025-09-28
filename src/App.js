@@ -343,7 +343,7 @@ const STYLES = {
   },
   avatarContainer: {
     width: '100%',
-    height: '400px',
+    aspectRatio: '16/9',
     border: '3px solid #555555',
     borderRadius: '15px',
     overflow: 'hidden',

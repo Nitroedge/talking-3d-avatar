@@ -325,7 +325,8 @@ const STYLES = {
     display: 'flex',
     flexDirection: 'column',
     gap: '15px',
-    flex: 1
+    flex: 1,
+    alignItems: 'center'
   },
   sidebar: {
     width: '250px',

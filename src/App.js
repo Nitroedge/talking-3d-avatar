@@ -345,18 +345,18 @@ const STYLES = {
     marginBottom: "15px",
   },
   sidebarLabel: {
-    fontSize: "0.85em",
+    fontSize: "1.5em",
     color: "#CCCCCC",
     fontWeight: "bold",
     marginBottom: "5px",
   },
   sidebarValue: {
-    fontSize: "0.9em",
+    fontSize: "1.2em",
     color: "#FFFFFF",
     marginLeft: "10px",
   },
   sidebarValueLarge: {
-    fontSize: "1.8em",
+    fontSize: "1.5em",
     color: "#FFFFFF",
     marginLeft: "10px",
     fontWeight: "bold",
@@ -477,7 +477,7 @@ function App() {
 
   const [speak, setSpeak] = useState(false);
   const [text, setText] = useState(
-    "I'm cooking up a storm and I hear you have Hello Fresh coming on Tuesday. Cook up a storm, I have my own restaurant to run. I'm serving Sienna style garlic bread tonight.",
+    "Love this — yes, we can absolutely keep the big ideas (mediator/orchestrator, memory + RAG, turn-taking heuristics, multi-voice TTS, safety guards) while only using your existing stack: n8n, Python (local scripts).",
   );
   const [audioSource, setAudioSource] = useState(null);
   const [playing, setPlaying] = useState(false);

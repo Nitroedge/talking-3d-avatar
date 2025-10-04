@@ -185,7 +185,6 @@ function Avatar({ avatar_url, speak, setSpeak, text, setAudioSource, playing }) 
   });
 
   const [clips, setClips] = useState([]);
-  const mixer = useMemo(() => new THREE.AnimationMixer(gltf.scene), []);
   const mixer = useMemo(() => new THREE.AnimationMixer(gltf.scene), [gltf.scene]);
 
   useEffect(() => {

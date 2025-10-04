@@ -1,6 +1,10 @@
 import {
 	AnimationClip,
+	BooleanKeyframeTrack,
+	ColorKeyframeTrack,
 	NumberKeyframeTrack,
+	Vector3,
+	VectorKeyframeTrack
 } from 'three';
 
 var fps = 60
@@ -25,7 +29,6 @@ function createAnimation (recordedData, morphTargetDictionary, bodyPart) {
   // console.log("----morphTargetDictionary", morphTargetDictionary)
 
   if (recordedData.length != 0) {
-  if (recordedData.length !== 0) {
     let animation = []
     for (let i = 0; i < Object.keys(morphTargetDictionary).length; i++) {
       animation.push([])
@@ -38,7 +41,6 @@ function createAnimation (recordedData, morphTargetDictionary, bodyPart) {
           if (! (modifiedKey(key) in morphTargetDictionary)) {return};
           
           if (key == 'mouthShrugUpper') {
-          if (key === 'mouthShrugUpper') {
             value += 0.4;
           }
 
@@ -53,6 +55,7 @@ function createAnimation (recordedData, morphTargetDictionary, bodyPart) {
 
     let tracks = []
 
+    let flag = false;
     //create morph animation
     Object.entries(recordedData[0].blendshapes).forEach(([key, value]) => {
 

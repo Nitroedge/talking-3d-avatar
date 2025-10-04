@@ -186,6 +186,7 @@ function Avatar({ avatar_url, speak, setSpeak, text, setAudioSource, playing }) 
 
   const [clips, setClips] = useState([]);
   const mixer = useMemo(() => new THREE.AnimationMixer(gltf.scene), []);
+  const mixer = useMemo(() => new THREE.AnimationMixer(gltf.scene), [gltf.scene]);
 
   useEffect(() => {
 
@@ -213,7 +214,7 @@ function Avatar({ avatar_url, speak, setSpeak, text, setAudioSource, playing }) 
       alert('Backend service not available. This app requires a separate backend service for text-to-speech functionality.\n\nThe backend can be found at: https://github.com/bornfree/talking_avatar_backend');
     })
 
-  }, [speak]);
+  }, [speak, morphTargetDictionaryBody, morphTargetDictionaryLowerTeeth, text, host]);
 
   let idleFbx = useFBX('/idle.fbx');
   let { clips: idleClips } = useAnimations(idleFbx.animations);
@@ -525,7 +526,6 @@ function App() {
                 <Environment background={false} files="/images/photo_studio_loft_hall_1k.hdr" />
               </Suspense>
 
-              {/* Avatar temporarily hidden 
               <Suspense fallback={null}>
                 <Avatar 
                   avatar_url="/model.glb" 
@@ -535,7 +535,7 @@ function App() {
                   setAudioSource={setAudioSource}
                   playing={playing}
                 />
-              </Suspense> */}
+              </Suspense>
             </Canvas>
             <Loader dataInterpolation={(p) => `Loading... please wait`}  />
           </div>

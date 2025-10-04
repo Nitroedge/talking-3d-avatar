@@ -339,7 +339,7 @@ const STYLES = {
     marginBottom: '15px'
   },
   sidebarLabel: {
-    fontSize: '0.85em',
+    fontSize: '1.7em',
     color: '#CCCCCC',
     fontWeight: 'bold',
     marginBottom: '5px'

@@ -345,7 +345,7 @@ const STYLES = {
     marginBottom: '5px'
   },
   sidebarValue: {
-    fontSize: '0.9em',
+    fontSize: '1.5em',
     color: '#FFFFFF',
     marginLeft: '10px'
   },
